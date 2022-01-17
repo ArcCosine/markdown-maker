@@ -15,6 +15,17 @@
     renderer.heading = function( text, level ){
         return "<h" + level + ">" + text + "</h" + level + ">";
     }
+
+    renderer.link = function( href, title, text ){
+        const external = !/^\//.test(href);
+        const target = external ? " target=\"_blank\"" : "";
+        const titleText = title ? " title=\"" + title + "\"" : "";
+        const hrefText  = " href=\"" + href + "\"";
+
+        return "<a" + hrefText + target + titleText + ">" + text + "</a>";
+    };
+
+
     marked.setOptions({
         renderer: renderer,
         gfm: true,
